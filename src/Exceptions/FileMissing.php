@@ -2,6 +2,4 @@
 
 namespace PhutureProof\Exceptions;
 
-class FileMissing extends \Exception
-{
-}
+class FileMissing extends \Exception {}
