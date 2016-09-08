@@ -1,0 +1,24 @@
+{
+  "name": "phutureproof/friday",
+  "description": "Simple REST Server",
+  "minimum-stability": "stable",
+  "license": "APACHE 2.0",
+  "authors": [
+	{
+	  "name": "Dale Paget",
+	  "email": "dale@phutureproof.com"
+	}
+  ],
+  "autoload": {
+	"psr-4": {
+	  "PhutureProof\\": "src/"
+	}
+  },
+  "require": {
+	"slim/slim": "3.5.0",
+	"tuupola/slim-jwt-auth": "*"
+  },
+  "require-dev": {
+	"phpunit/phpunit": "*"
+  }
+}
