@@ -2,17 +2,23 @@
 /**
  * Friday
  * Main Friday class
+ *
+ * This is simply the flow of the application wrapped up into a class.
+ * It may turn out to be not such a smart idea, we'll see down the road..
+ *
+ * TODO: Implement total rewrite when I've decided it's a bad idea!
  */
 
 namespace PhutureProof;
 
-use PhutureProof\Database\PDOAdapter;
-use PhutureProof\Utils\Config;
-use PhutureProof\Utils\Views;
-use Slim\App;
+use PhutureProof\Database\PDOAdapter as PDOAdapter;
+use PhutureProof\Utils\Config as Config;
+use PhutureProof\Utils\Views as Views;
+use Slim\App as App;
 
 class Friday
 {
+    private $config = [];
     private $db;
     private $slim;
     private $slimAppConfig = [
@@ -25,19 +31,16 @@ class Friday
     public function __construct()
     {
         // load config from file
-        $config = Config::loadConfigFromFile(FRIDAY_APPLICATION_CONFIG);
-
-        // shorthand, too much typing
-        $dbConfig = $config['database'];
+        $this->config = Config::loadConfigFromFile(FRIDAY_APPLICATION_CONFIG);
 
         // load our database adapter
         /** @var PDOAdapter db */
         $this->db = new PDOAdapter(
-            $dbConfig['driver'],
-            $dbConfig['hostname'],
-            $dbConfig['username'],
-            $dbConfig['password'],
-            $dbConfig['database']
+            $this->config['database']['driver'],
+            $this->config['database']['hostname'],
+            $this->config['database']['username'],
+            $this->config['database']['password'],
+            $this->config['database']['database']
         );
 
         /** @var App slim */
@@ -46,22 +49,30 @@ class Friday
 
     public function run()
     {
-        $this->_loadGroups();
+        $this->_setupSlimRoutes();
+        $this->_runSlim();
     }
 
-    private function _loadGroups()
+    public function _setupSlimRoutes()
     {
-        // handle url.com/api/somesecrettoken/tablename
-        $this->slim->group('/api/{token}/{table}', function () {
-
-
-        });
-        $this->slim->get('', function ($req, $res, $args) {
-            echo "Hello";
-            /** @var \Slim\Http\Response $res */
-            $res->getBody()->write(Views::load('api'));
+        // handle home page
+        $this->slim->get('/', function ($req, $res, $args) {
+            $res->getBody()->write(Views::load('home'));
 
             return $res;
-        });
+        })->setName('home');
+
+        // handle /api
+        $this->slim->get('/api', function ($req, $res, $args) {
+            $res->getBody()->write(Views::load('api'));
+            return $res;
+        })->setName('api-frontend');
+
+
+    }
+
+    private function _runSlim()
+    {
+        $this->slim->run();
     }
 }

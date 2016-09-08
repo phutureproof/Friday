@@ -4,9 +4,14 @@
 	"hostname": "localhost",
 	"username": "fridayAPI",
 	"password": "wh3na1131s3fai1s",
-	"database": "friday"
+	"database": "friday",
+	"whitelist": [
+	  "products",
+	  "users"
+	]
   },
   "authentication": {
+	"useWhitelist": true,
 	"useAuthentication": true
   }
 }
