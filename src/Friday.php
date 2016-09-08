@@ -2,16 +2,13 @@
 /**
  * Friday
  * Main Friday class
- *
- * Basically configure itself and run automatically
- * This may get turned into a config variable so
- * we can switch the running of the app on the fly
  */
 
 namespace PhutureProof;
 
 use PhutureProof\Database\PDOAdapter;
 use PhutureProof\Utils\Config;
+use PhutureProof\Utils\Views;
 use Slim\App;
 
 class Friday
@@ -20,14 +17,15 @@ class Friday
     private $slim;
     private $slimAppConfig = [
         'settings' => [
-            'addContentLengthHeader' => false
-        ]
+            'addContentLengthHeader' => false,
+            'displayErrorDetails'    => true,
+        ],
     ];
 
-    public function __construct($run = false)
+    public function __construct()
     {
         // load config from file
-        $config = Config::loadConfigFromFile(FRIDAY_APP_CONFIGDIR . '/application.ini');
+        $config = Config::loadConfigFromFile(FRIDAY_APPLICATION_CONFIG);
 
         // shorthand, too much typing
         $dbConfig = $config['database'];
@@ -44,10 +42,6 @@ class Friday
 
         /** @var App slim */
         $this->slim = new App($this->slimAppConfig);
-
-        if (($config['config']['autorun'] || $run) && $run) {
-            $this->run();
-        }
     }
 
     public function run()
@@ -57,19 +51,17 @@ class Friday
 
     private function _loadGroups()
     {
-        $this->slim->get('', function ($req, $res, $args) {
-            /** @var \Slim\Http\Request $res */
-            $res->
-        });
+        // handle url.com/api/somesecrettoken/tablename
         $this->slim->group('/api/{token}/{table}', function () {
-            $this->map(['GET', 'DELETE', 'PATCH', 'PUT'], '', function ($request, $response, $args) {
 
-            })->setName('user');
 
-            $this->get('/reset-password', function ($request, $response, $args) {
-                // Route for /users/{id:[0-9]+}/reset-password
-                // Reset the password for user identified by $args['id']
-            })->setName('user-password-reset');
+        });
+        $this->slim->get('', function ($req, $res, $args) {
+            echo "Hello";
+            /** @var \Slim\Http\Response $res */
+            $res->getBody()->write(Views::load('api'));
+
+            return $res;
         });
     }
 }

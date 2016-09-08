@@ -20,5 +20,7 @@ require_once("bootstrap.php");
 use PhutureProof\Friday;
 
 // create new app
-$app = new Friday(false);
-//$app->run();
+$friday = new Friday();
+
+// go!
+$friday->run();

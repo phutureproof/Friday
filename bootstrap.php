@@ -8,16 +8,16 @@
  */
 
 // Friday defines
-defined('FRIDAY_APP_BASEDIR') or define('FRIDAY_APP_BASEDIR', __DIR__);
-defined('FRIDAY_APP_VENDORDIR') or define('FRIDAY_APP_VENDORDIR', FRIDAY_APP_BASEDIR . '/vendor');
-defined('FRIDAY_APP_CONFIGDIR') or define('FRIDAY_APP_CONFIGDIR', FRIDAY_APP_BASEDIR . '/config');
+defined('FRIDAY_BASE_DIR') or define('FRIDAY_BASE_DIR', __DIR__);
+defined('FRIDAY_VENDOR_DIR') or define('FRIDAY_VENDOR_DIR', FRIDAY_BASE_DIR . '/vendor');
+defined('FRIDAY_CONFIG_DIR') or define('FRIDAY_CONFIG_DIR', FRIDAY_BASE_DIR . '/config');
+defined('FRIDAY_APPLICATION_CONFIG') or define('FRIDAY_APPLICATION_CONFIG', FRIDAY_CONFIG_DIR . '/application-config.json');
+defined('FRIDAY_VIEW_DIR') or define('FRIDAY_VIEW_DIR', FRIDAY_BASE_DIR . '/views');
 
 // start session if we don't have one
-if (!session_id()) {
+if ( ! session_id()) {
     session_start();
 }
 
 // require composer autoloader
 require_once(__DIR__ . '/vendor/autoload.php');
-
-// hand back over to parent script
