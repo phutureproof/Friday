@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b34afa3cc2d6c31f999e2ab632136a2d",
-    "content-hash": "b01edff51465ce1d40a57d104eb65c10",
+    "hash": "012cd3959449fd0e44321403b97e88e6",
+    "content-hash": "25687a4d674e62df0d7483cc9c12a6dc",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -119,6 +119,42 @@
                 "routing"
             ],
             "time": "2016-06-12 19:08:51"
+        },
+        {
+            "name": "phutureproof/guardian",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phutureproof/Guardian.git",
+                "reference": "a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phutureproof/Guardian/zipball/a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c",
+                "reference": "a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhutureProof\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dale Paget",
+                    "email": "dale@phutureproof.com"
+                }
+            ],
+            "description": "Dependency injector",
+            "time": "2016-04-14 22:18:17"
         },
         {
             "name": "pimple/pimple",
@@ -376,6 +412,57 @@
                 "psr-7"
             ],
             "time": "2016-08-12 13:43:28"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v3.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ],
+            "time": "2016-07-25 15:51:55"
         }
     ],
     "packages-dev": [

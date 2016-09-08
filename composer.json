@@ -1,8 +1,14 @@
 {
   "name": "phutureproof/friday",
-  "description": "Simple REST Server",
-  "minimum-stability": "stable",
-  "license": "APACHE 2.0",
+  "type": "application",
+  "description": "Simple REST Server with JSON Web Token support",
+  "keywords": [
+	"rest",
+	"server",
+	"api"
+  ],
+  "homepage": "http://friday.phutureproof.com",
+  "license": "MIT",
   "authors": [
 	{
 	  "name": "Dale Paget",
@@ -15,10 +21,13 @@
 	}
   },
   "require": {
+	"php": ">=5.4",
+	"phutureproof/guardian": "3.0.0",
 	"slim/slim": "3.5.0",
-	"tuupola/slim-jwt-auth": "*"
+	"tuupola/slim-jwt-auth": "2.3.1",
+	"twbs/bootstrap": "3.3.7"
   },
   "require-dev": {
-	"phpunit/phpunit": "*"
+	"phpunit/phpunit": "5.5.4"
   }
 }
