@@ -1,7 +1,7 @@
 {
   "name": "phutureproof/friday",
   "type": "application",
-  "description": "Simple REST Server with JSON Web Token support",
+  "description": "Simple REST API",
   "keywords": [
 	"rest",
 	"server",

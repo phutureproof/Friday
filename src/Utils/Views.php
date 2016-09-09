@@ -2,21 +2,10 @@
 
 namespace PhutureProof\Utils;
 
-use Composer\Downloader\FilesystemException;
+use PhutureProof\Exceptions\FileMissing;
 
-/**
- * Class Views
- * @package PhutureProof\Utils
- */
 class Views
 {
-    /**
-     * @param string $viewFile
-     * @param array $data
-     *
-     * @return string
-     * @throws FilesystemException
-     */
     public static function load($viewFile, $data = [])
     {
         // tidy up the requested view
@@ -35,7 +24,7 @@ class Views
 
             return $content;
         } else {
-            throw new FilesystemException("Couldn't load view: {$viewFile}");
+            throw new FileMissing("Couldn't load view: {$file}");
         }
     }
 }

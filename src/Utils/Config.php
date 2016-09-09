@@ -1,12 +1,8 @@
 <?php
-/**
- * Config
- *
- * Simple ini file handling
- */
+
 namespace PhutureProof\Utils;
 
-use Composer\Downloader\FilesystemException;
+use PhutureProof\Exceptions\FileMissing;
 
 class Config
 {
@@ -20,7 +16,7 @@ class Config
             if (file_exists($file)) {
                 self::$_loadedFiles[$sanitisedFile] = json_decode(file_get_contents($file), true);
             } else {
-                throw new FilesystemException("Couldn't load config file: {$file}");
+                throw new FileMissing("Couldn't load config file: {$file}");
             }
         }
 
