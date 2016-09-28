@@ -3,7 +3,7 @@
 	"driver": "mysql",
 	"hostname": "localhost",
 	"username": "fridayAPI",
-	"password": "databasePassword",
+	"password": "fridayDatabasePassword",
 	"database": "friday",
 	"tablePrefix": "friday_",
 	"whitelist": [
@@ -22,6 +22,7 @@
   },
   "authentication": {
 	"useWhitelist": true,
-	"useAuthentication": true
+	"useAuthentication": true,
+	"sessionTokenName": "friday-auth-session"
   }
 }

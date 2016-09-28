@@ -21,7 +21,6 @@ class Friday
     private $config = [];
     private $db;
     private $slim;
-    private $formBuilder;
 
     public function __construct()
     {
@@ -55,7 +54,7 @@ class Friday
      *
      * As the name suggest this will assign all of our api routes
      */
-    public function _setupSlimRoutes()
+    private function _setupSlimRoutes()
     {
         // need to pass these on later as the scope changes
         $db     = $this->db;
@@ -67,13 +66,15 @@ class Friday
             $res->getBody()->write(Views::load('home'));
 
             return $res;
+
         })->setName('home');
 
         // handle /api
+        // group everything together too
         $this->slim->group('/api', function () use ($db, $config) {
             /** @var App $this */
 
-            // index
+            // api-index
             // also setName to api-index
             $this->get('', function (Request $req, Response $res, $args) use ($db, $config) {
                 $res->getBody()->write(Views::load('api'));
@@ -81,29 +82,68 @@ class Friday
                 return $res;
             })->setName('api-index');
 
-            // /token/table
+            // specifically handle /token/request
+            // and setName token-request
+            $this->get('/token/request', function (Request $req, Response $res, $args) use ($db, $config) {
+
+                /**
+                 * TODO: Implement good token generation here
+                 */
+                $index = $config['authentication']['sessionTokenName'];
+                if ( ! isset($_SESSION[$index])) {
+                    $_SESSION[$index] = sha1(time());
+                }
+
+                return $res->withJson([
+                    'status' => 'success',
+                    'token'  => $_SESSION[$index],
+                ]);
+            });
+
+            // wildcard matching for any token and any data table
+            // /token/anything
             $this->get('/{token}/{table}', function (Request $req, Response $res, $args) use ($db, $config) {
 
                 $token = $args['token'];
                 $table = $args['table'];
 
-                if($config['authentication']['useAuthentication']) {
-                    // TODO: Implement token validation
-                    // for now just continue onwards
+                if ($config['authentication']['useAuthentication']) {
+                    $sessionName = $config['authentication']['sessionTokenName'];
+                    if ( ! isset($_SESSION[$sessionName])) {
+                        return $res->withJson([
+                            'status'  => 'error',
+                            'message' => 'missing token',
+                        ]);
+                    }
+                    if (isset($_SESSION[$sessionName]) && ($_SESSION[$sessionName] !== $token)) {
+                        return $res->withJson([
+                            'status'  => 'error',
+                            'message' => 'invalid token',
+                        ]);
+                    }
                 }
 
                 if ($config['authentication']['useWhitelist']) {
                     if (in_array($table, $config['database']['whitelist'])) {
-                        $table = FRIDAY_DB_PREFIX . $args['table'];
-                        $sql = "SELECT * FROM `{$table}`";
-                        $result = $db->runPrepared($sql, true);
-                        return $res->withJson($result);
+                        $table   = FRIDAY_DB_PREFIX . $args['table'];
+                        $sql     = "SELECT * FROM `{$table}`";
+                        $result  = $db->runPrepared($sql, true);
+                        $numRows = count($result);
+
+                        return $res->withJson([
+                            'status'    => 'success',
+                            'totalRows' => $numRows,
+                            'results'   => $result,
+                        ]);
                     }
                 }
 
                 return $res;
             });
+            // end of the get /token/table route
+
         });
+        // end of the /api group
     }
 
     private function _runSlim()

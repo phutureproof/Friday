@@ -22,6 +22,7 @@
   },
   "authentication": {
 	"useWhitelist": true,
-	"useAuthentication": true
+	"useAuthentication": true,
+	"sessionTokenName": "friday-auth-session"
   }
 }

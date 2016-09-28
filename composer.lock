@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "57b576a396a57976c3acb83b9b89b53c",
-    "content-hash": "0c54857a79d67716b4dab7c25a4272f4",
+    "hash": "460008bd7f0b54e206b524783254330f",
+    "content-hash": "c584c5427f07d2e4098d6ee92178bd3e",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -119,42 +119,6 @@
                 "routing"
             ],
             "time": "2016-06-12 19:08:51"
-        },
-        {
-            "name": "phutureproof/guardian",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phutureproof/Guardian.git",
-                "reference": "a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phutureproof/Guardian/zipball/a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c",
-                "reference": "a5e45e2bcb604ffdb884a7be80cf8e8fa33a3f1c",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PhutureProof\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dale Paget",
-                    "email": "dale@phutureproof.com"
-                }
-            ],
-            "description": "Dependency injector",
-            "time": "2016-04-14 22:18:17"
         },
         {
             "name": "pimple/pimple",
