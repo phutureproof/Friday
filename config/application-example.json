@@ -1,0 +1,28 @@
+{
+  "database": {
+	"driver": "mysql",
+	"hostname": "localhost",
+	"username": "fridayAPI",
+	"password": "fridayDatabasePassword",
+	"database": "friday",
+	"tablePrefix": "friday_",
+	"whitelist": [
+	  "products",
+	  "users"
+	],
+	"blacklist": [
+	  "admin"
+	]
+  },
+  "slim": {
+	"settings": {
+	  "addContentLengthHeader": false,
+	  "displayErrorDetails": true
+	}
+  },
+  "authentication": {
+	"useWhitelist": true,
+	"useAuthentication": true,
+	"sessionTokenName": "friday-auth-session"
+  }
+}

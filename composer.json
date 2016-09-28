@@ -1,0 +1,29 @@
+{
+  "name": "phutureproof/friday",
+  "type": "application",
+  "description": "Simple REST API",
+  "keywords": [
+	"rest",
+	"server",
+	"api"
+  ],
+  "homepage": "http://friday.phutureproof.com",
+  "license": "MIT",
+  "authors": [
+	{
+	  "name": "Dale Paget",
+	  "email": "dale@phutureproof.com"
+	}
+  ],
+  "autoload": {
+	"psr-4": {
+	  "PhutureProof\\": "src/"
+	}
+  },
+  "require": {
+	"php": ">=5.4",
+	"slim/slim": "3.5.0",
+	"tuupola/slim-jwt-auth": "2.3.1",
+	"twbs/bootstrap": "3.3.7"
+  }
+}
